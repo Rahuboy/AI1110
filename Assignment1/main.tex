@@ -1,0 +1,39 @@
+\documentclass[journal,12pt,twocolumn]{IEEEtran}
+
+\usepackage[margin = 1.2in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{tfrupee}  
+
+\begin{document}
+
+\title{Assignment 1}
+\author{Rahul Ramachandran (cs21btech11049)}
+\maketitle
+
+\begin{flushleft}
+\textbf{5(b) [ICSE 10 2017] :} How much should a man invest in \rupee~50 shares selling at \rupee~60 to obtain an income of \rupee~450, if the rate of dividend declared is 10\%? Also find his yield percent, to the nearest whole number.
+\vspace{3mm}
+
+\textbf{Solution:} Let the number of shares the man buys be \(x\). If the shares are worth \(r\) and the dividend is \(d\), then the income is given by \( x \cdot r \cdot d \).
+
+The various parameters involved in this question are listed in the table below:
+\begin{table}[ht!]
+    \input{tables/table1}
+\end{table}
+
+
+Since the man is investing in \rupee~50 shares with a 10\% rate of dividend, here, \(d = 0.1 \) and \( r = 50 \). Therefore, the income he gets equals \[ x\cdot 50 \cdot 0.1 = 5x\]
+For an income of \rupee~450, we must have
+
+ \begin{align*}
+     5x &= 450 \\
+      x &= 90  
+\end{align*}
+Therefore, the man purchases 90 shares, and must invest \[ x \cdot c = 90 \cdot 60 = \fbox{\text{\rupee~5400}}\]
+
+\vspace{3mm}
+The yield percent is given by \( \displaystyle{\frac{\text{income}}{\text{investment}}} \cdot 100 \) and therefore equals \[ \frac{450}{5400} \cdot 100 = 8.33\% \approx \fbox{8 \%} \] 
+
+\end{flushleft}
+
+\end{document}
