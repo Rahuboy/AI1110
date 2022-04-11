@@ -1,4 +1,5 @@
-AI1110: Probability and Random Variables
+#AI1110: Probability and Random Variables
+
 This is a repository for the course AI1110 at IITH.
 
 Name: Rahul Ramachandran
