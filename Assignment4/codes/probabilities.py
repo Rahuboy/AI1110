@@ -24,13 +24,21 @@ if __name__ == "__main__":
 #creating list of probabilities
     problist = np.array([prob(i,list) for i in range(10)])
 
-#printing probability values
-    for i in range(10):
-        x=prob(i,list)
-        print("probability of occurrence of {} is {}".format(i,x))
+#printing  theoretical probability value
+    print("probability of occurrence of 6 is ",prob(6,list))
 
-#writing to excel file    
-    df = pd.DataFrame(problist)
-    df = df.transpose()
-    df.to_excel('tables/probabilities.xlsx', header=False, index=False)
+#Sample size
+    N = 2500
+
+    counter = 0
+
+
+#finding empirical value of probability, by counting frequency
+    for i in range(N):
+        x = np.random.choice([i for i in range(10)], p = problist)
+        if(x == 6):
+            counter = counter+1
+
+#printing empirical value
+    print("Experimental value of probability of occurrence of 6 is",counter/N)
     
