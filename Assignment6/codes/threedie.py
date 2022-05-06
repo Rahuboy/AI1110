@@ -1,7 +1,7 @@
 import numpy as np
 
-#function that checks if the 3 tuple A satisfies the conditions of event A
-def countA(x):
+#function that checks if the 3 tuple x satisfies the conditions of event B
+def countB(x):
     if(x[2] <= 6 and x[2] >=1):
         if(x[0]==6):
             if(x[1]==5):
@@ -21,7 +21,7 @@ count1 = problist.count([6,5,4])
 
 #code block counts the number of times B occurs
 #this value is stored in count2
-bitlist = map(lambda x: countA(x), problist)
+bitlist = map(lambda x: countB(x), problist)
 bitlist = list(bitlist)
 count2 = sum(bitlist)
 
