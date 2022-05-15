@@ -9,7 +9,7 @@ p = 1/6
 #Binomial Random Variable
 rv = binom(n, p)
 
-#X_Values
+#X axis
 x_val = np.arange((n+1))
 
 #CDF Values (Y axis)
