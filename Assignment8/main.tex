@@ -1,0 +1,182 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Welcome to Overleaf --- just edit your LaTeX on the left,
+% and we'll compile it for you on the right. If you open the
+% 'Share' menu, you can invite other users to edit at the same
+% time. See www.overleaf.com/learn for more info. Enjoy!
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Inbuilt themes in beamer
+\documentclass{beamer}
+
+%packages:
+% \usepackage{tfrupee}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{gensymb}
+% \usepackage{txfonts}
+
+% \def\inputGnumericTable{}
+
+% \usepackage[latin1]{inputenc}                                 
+% \usepackage{color}                                            
+% \usepackage{array}                                            
+% \usepackage{longtable}                                        
+% \usepackage{calc}                                             
+% \usepackage{multirow}                                         
+% \usepackage{hhline}                                           
+% \usepackage{ifthen}
+% \usepackage{caption} 
+% \captionsetup[table]{skip=3pt}  
+% \providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+% \providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+% %\renewcommand{\thefigure}{\arabic{table}}
+% \renewcommand{\thetable}{\arabic{table}}      
+
+\setbeamertemplate{caption}[numbered]{}
+
+\usepackage{enumitem}
+\usepackage{tfrupee}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{txfonts}
+
+\def\inputGnumericTable{}
+
+\usepackage[latin1]{inputenc}                                 
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                        
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}
+\usepackage{caption} 
+\captionsetup[table]{skip=3pt}  
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+\renewcommand{\thefigure}{\arabic{table}}
+\renewcommand{\thetable}{\arabic{table}}   
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+
+% Theme choice:
+\usetheme{CambridgeUS}
+
+% Title page details: 
+\title{Assignment 8} 
+\author{Rahul Ramachandran}
+\date{\today}
+% \logo{\large \LaTeX{}}
+
+
+\begin{document}
+
+% Title page frame
+\begin{frame}
+    \titlepage 
+\end{frame}
+
+% Remove logo from the next slides
+\logo{}
+
+
+% Outline frame
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+
+
+\section{Problem Statement}
+\begin{frame}{Problem Statement}
+    \begin{block}{13.2 Q17 [NCERT 12] } The probability of obtaining an even prime number on each die, when a pair of dice is rolled is?
+    \end{block}
+\end{frame}
+
+
+
+\section{Definitions}
+\begin{frame}{Random Variable Definition}
+In this experiment, there are two consecutive Bernoulli trials. Therefore, it is appropriate to define a Binomial Random Variable $X$ as under:
+
+
+\begin{table}[ht!]
+    \centering
+    \input{tables/table1}
+    \caption{Random Variable $X$}
+	\label{table:table1}
+\end{table}
+
+  
+\end{frame}
+
+
+
+\begin{frame}{Probability Mass Function}
+
+The probability of success (assuming a fair die) is $p=\frac{1}{6}$.
+
+Therefore, the probability that $X$ maps to $i$ is given by:
+\begin{block}{}
+       \begin{align}
+                \label{eq1}
+           \pr{X=i} = \binom{2}{i} (1-p)^{2-i} p^i ,~ 0 \le i \le 2 
+       \end{align}
+\end{block}
+
+The values for $i$ can be substituted in the above formula, and the graph of the PMF can be obtained.
+\end{frame}
+
+
+\begin{frame}{Cumulative Distribution Function}
+The cumulative probability $ \pr{X \leq i}$ can be defined as under:
+
+\begin{block}{}
+\begin{align}
+          \label{eq2}
+       \pr{X \leq i} = \sum_{k=0}^{i} \binom{2}{k} (1-p)^{2-k} p^k ,~ 0 \le k \le 2
+\end{align}
+\end{block}
+
+The values of $i$ can be substituted in the above equation, and the obtained values can be used to plot the CDF graph.
+
+\end{frame}
+
+
+\section{Solution}
+\begin{frame}{Solution}
+
+The probability to be found corresponds to the case $i=2$. Substituting $i=2$ in Equation \ref{eq1}, we get
+\begin{align}
+    \pr{X=2} &= \binom{2}{2} \times {(1-p)}^{2-2} \times p^2 \\
+             &= 1 \times \brak{1-\frac{1}{6}}^{0} \times \brak{\frac{1}{6}}^2 \\
+             &= \frac{1}{36}
+\end{align}
+\end{frame}
+
+\section{Graphs}
+\begin{frame}{PMF Graph}
+The PMF graph is:
+    \begin{figure}[!ht]
+		\centering
+		\includegraphics[width=\textwidth,height=5.5cm,keepaspectratio]{figures/PMF.png}
+		\caption{Probability Mass Function}
+		\label{fig1}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{CDF Graph}
+The CDF graph is:
+    \begin{figure}[!ht]
+		\centering
+		\includegraphics[width=\textwidth,height=5.5cm,keepaspectratio]{figures/CDF.png}
+		\caption{Cumulative Distribution Function}
+		\label{fig2}
+	\end{figure}
+\end{frame}
+
+
+\end{document}
