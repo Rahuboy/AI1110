@@ -1,0 +1,238 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Welcome to Overleaf --- just edit your LaTeX on the left,
+% and we'll compile it for you on the right. If you open the
+% 'Share' menu, you can invite other users to edit at the same
+% time. See www.overleaf.com/learn for more info. Enjoy!
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Inbuilt themes in beamer
+\documentclass{beamer}
+
+%packages:
+% \usepackage{tfrupee}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{gensymb}
+% \usepackage{txfonts}
+
+% \def\inputGnumericTable{}
+
+% \usepackage[latin1]{inputenc}                                 
+% \usepackage{color}                                            
+% \usepackage{array}                                            
+% \usepackage{longtable}                                        
+% \usepackage{calc}                                             
+% \usepackage{multirow}                                         
+% \usepackage{hhline}                                           
+% \usepackage{ifthen}
+% \usepackage{caption} 
+% \captionsetup[table]{skip=3pt}  
+% \providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+% \providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+% %\renewcommand{\thefigure}{\arabic{table}}
+% \renewcommand{\thetable}{\arabic{table}}      
+
+\setbeamertemplate{caption}[numbered]{}
+
+\usepackage{enumitem}
+\usepackage{tfrupee}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{txfonts}
+
+\def\inputGnumericTable{}
+
+\usepackage[latin1]{inputenc}                                 
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                        
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}
+\usepackage{caption} 
+\captionsetup[table]{skip=3pt}  
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+\renewcommand{\thefigure}{\arabic{table}}
+\renewcommand{\thetable}{\arabic{table}}   
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+
+% Theme choice:
+\usetheme{CambridgeUS}
+
+% Title page details: 
+\title{Assignment 9} 
+\author{Rahul Ramachandran}
+\date{\today}
+% \logo{\large \LaTeX{}}
+
+
+\begin{document}
+
+% Title page frame
+\begin{frame}
+    \titlepage 
+\end{frame}
+
+% Remove logo from the next slides
+\logo{}
+
+
+% Outline frame
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+
+
+\section{Problem Statement}
+\begin{frame}{Problem Statement}
+    \begin{block}{13.5 Q5 [NCERT 12] } The probability that a bulb produced by a factory will fuse after 150 days of use is 0.05. Find the probability that out of 5 such bulbs:
+    \begin{enumerate}[label=(\roman*)]
+	\item none
+	\item not more than one
+	\item more than one
+	\item at least one
+	\end{enumerate}
+	will fuse after 150 days of use.
+    \end{block}
+\end{frame}
+
+\section{Definitions}
+\begin{frame}{Random Variable Definition}
+Since there are $5$ bulbs, it is appropriate to define a Binomial Random Variable $X$ as under:
+
+
+\begin{table}[ht!]
+    \centering
+    \input{tables/table1}
+    \caption{Random Variable $X$}
+	\label{table:table1}
+\end{table}
+
+\end{frame}
+
+\begin{frame}{Probability Mass Function}
+
+The probability that a bulb fuses equals $p=0.05$.
+
+Therefore, the probability that $X$ maps to $i$ is given by:
+\begin{block}{}
+       \begin{align}
+                \label{eq1}
+           \pr{X=i} = \binom{5}{i} (1-p)^{5-i} p^i ,~ 0 \le i \le 5 
+       \end{align}
+\end{block}
+
+The values for $i$ can be substituted in the above formula, and the graph of the PMF can be obtained.
+\end{frame}
+
+
+\begin{frame}{Cumulative Distribution Function}
+The cumulative probability $ \pr{X \leq i}$ can be defined as under:
+
+\begin{block}{}
+\begin{align}
+          \label{eq2}
+       \pr{X \leq i} = \sum_{k=0}^{i} \binom{5}{k} (1-p)^{5-k} p^k ,~ 0 \le i \le 5
+\end{align}
+\end{block}
+
+The values of $i$ can be substituted in the above equation, and the obtained values can be used to plot the CDF graph.
+
+\end{frame}
+
+
+\section{Solution}
+\begin{frame}{Solution}
+\begin{enumerate}[label=(\roman*)]
+  \setcounter{enumi}{0}
+\item The probability to be found corresponds to $\pr{X=0}$. Substituting $i=0$ in Equation \ref{eq1}, we get
+\begin{align}
+    \pr{X=0} &= \binom{5}{0} \times {(1-p)}^{5-0} \times p^0 \\
+             &= 1 \times \brak{1-0.05}^{5} \times \brak{0.05}^0 \\
+             \label{eq5}
+             &\approx 0.774
+\end{align}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Solution}
+\begin{enumerate}[label=(\roman*)]
+  \setcounter{enumi}{1}
+\item The probability to be found corresponds to $\pr{X=0}+\pr{X=1}$. Simple addition will give the probability as the events are mutually exclusive. Substituting $i=1$ in Equation \ref{eq1}, we get
+\begin{align}
+    \pr{X=1} &= \binom{5}{1} \times {(1-p)}^{5-1} \times p^1 \\
+             &= 5 \times \brak{1-0.05}^{4} \times \brak{0.05}^1 \\
+             &\approx 0.204
+\end{align}
+    Using the value of \pr{X=0} obtained from equation \ref{eq5}:
+    \begin{align}
+    \pr{X=0} + \pr{X=1} &\approx 0.774+0.204 \\
+             &= 0.978
+\end{align}
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{Solution}
+\begin{enumerate}[label=(\roman*)]
+  \setcounter{enumi}{2}
+\item The probability to be found corresponds to $\pr{X>1}$. This is equivalent to $1-\pr{X<=1}$ (Since $X>1$ and $X<=1$ are mutually exclusive, and the sum of the probabilities is 1). Substituting $i=1$ in Equation \ref{eq2}, we get
+\begin{align}
+    \pr{X<=1} &= \sum_{k=0}^{1} \binom{5}{k} (1-0.05)^{5-k} 0.05^k \\
+             &= 1 \times \brak{1-0.05}^{5} \times \brak{0.05}^0 +5 \times \brak{1-0.05}^{4} \times \brak{0.05}^1 \\
+             &\approx 0.774+0.204 \\
+             &= 0.978
+\end{align}
+Therefore,
+\begin{align}
+    \pr{X>1} &\approx 1-0.978 \\
+             &= 0.022
+\end{align}
+
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{Solution}
+\begin{enumerate}[label=(\roman*)]
+  \setcounter{enumi}{3}
+\item The probability to be found corresponds to $\pr{X>=1}$. This is equivalent to $1-\pr{X<1} = 1-\pr{X=0}$ (Since $X<1$ and $X>=1$ are mutually exclusive).
+
+Substituting the value found in \ref{eq5}:
+\begin{align}
+    1-\pr{X=0} &\approx 1-0.774 \\
+             &= 0.226
+\end{align}
+\end{enumerate}
+\end{frame}
+
+\section{Graphs}
+\begin{frame}{PMF Graph}
+The PMF graph is:
+    \begin{figure}[!ht]
+		\centering
+		\includegraphics[width=\textwidth,height=5.5cm,keepaspectratio]{figures/PMF.png}
+		\caption{Probability Mass Function}
+		\label{fig1}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{CDF Graph}
+The CDF graph is:
+    \begin{figure}[!ht]
+		\centering
+		\includegraphics[width=\textwidth,height=5.5cm,keepaspectratio]{figures/CDF.png}
+		\caption{Cumulative Distribution Function}
+		\label{fig2}
+	\end{figure}
+\end{frame}
+
+
+\end{document}
