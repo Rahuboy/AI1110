@@ -125,7 +125,7 @@ Therefore, the probability that $X$ maps to $i$ is given by:
 \begin{block}{}
        \begin{align}
                 \label{eq1}
-           \pr{X=i} = \binom{5}{i} (1-p)^{5-i} p^i ,~ 0 \le i \le 5 
+           p_X{(i)} = \binom{5}{i} (1-p)^{5-i} p^i ,~ 0 \le i \le 5 
        \end{align}
 \end{block}
 
@@ -139,7 +139,7 @@ The cumulative probability $ \pr{X \leq i}$ can be defined as under:
 \begin{block}{}
 \begin{align}
           \label{eq2}
-       \pr{X \leq i} = \sum_{k=0}^{i} \binom{5}{k} (1-p)^{5-k} p^k ,~ 0 \le i \le 5
+       F_{X}(i) = \sum_{k=0}^{i} \binom{5}{k} (1-p)^{5-k} p^k ,~ 0 \le i \le 5
 \end{align}
 \end{block}
 
@@ -152,12 +152,11 @@ The values of $i$ can be substituted in the above equation, and the obtained val
 \begin{frame}{Solution}
 \begin{enumerate}[label=(\roman*)]
   \setcounter{enumi}{0}
-\item The probability to be found corresponds to $\pr{X=0}$. Substituting $i=0$ in Equation \ref{eq1}, we get
+\item The probability to be found corresponds to $\pr{X=0}$. From the PMF Graph, we get:
 \begin{align}
-    \pr{X=0} &= \binom{5}{0} \times {(1-p)}^{5-0} \times p^0 \\
-             &= 1 \times \brak{1-0.05}^{5} \times \brak{0.05}^0 \\
+    \pr{X=0} &= p_X(0) \\
+             &=0.774 
              \label{eq5}
-             &\approx 0.774
 \end{align}
 \end{enumerate}
 \end{frame}
@@ -165,15 +164,9 @@ The values of $i$ can be substituted in the above equation, and the obtained val
 \begin{frame}{Solution}
 \begin{enumerate}[label=(\roman*)]
   \setcounter{enumi}{1}
-\item The probability to be found corresponds to $\pr{X=0}+\pr{X=1}$. Simple addition will give the probability as the events are mutually exclusive. Substituting $i=1$ in Equation \ref{eq1}, we get
+\item The probability to be found corresponds to $F_X(0)$. Therefore, from the CDF graph:
 \begin{align}
-    \pr{X=1} &= \binom{5}{1} \times {(1-p)}^{5-1} \times p^1 \\
-             &= 5 \times \brak{1-0.05}^{4} \times \brak{0.05}^1 \\
-             &\approx 0.204
-\end{align}
-    Using the value of \pr{X=0} obtained from equation \ref{eq5}:
-    \begin{align}
-    \pr{X=0} + \pr{X=1} &\approx 0.774+0.204 \\
+    \pr{X=1}+\pr{X=2} &=F_X(1) \\
              &= 0.978
 \end{align}
 \end{enumerate}
@@ -183,17 +176,11 @@ The values of $i$ can be substituted in the above equation, and the obtained val
 \begin{frame}{Solution}
 \begin{enumerate}[label=(\roman*)]
   \setcounter{enumi}{2}
-\item The probability to be found corresponds to $\pr{X>1}$. This is equivalent to $1-\pr{X<=1}$ (Since $X>1$ and $X<=1$ are mutually exclusive, and the sum of the probabilities is 1). Substituting $i=1$ in Equation \ref{eq2}, we get
+\item The probability to be found corresponds to $\pr{X>1}$. This is equivalent to $1-F_X(1)$. Therefore, 
 \begin{align}
-    \pr{X<=1} &= \sum_{k=0}^{1} \binom{5}{k} (1-0.05)^{5-k} 0.05^k \\
-             &= 1 \times \brak{1-0.05}^{5} \times \brak{0.05}^0 +5 \times \brak{1-0.05}^{4} \times \brak{0.05}^1 \\
-             &\approx 0.774+0.204 \\
-             &= 0.978
-\end{align}
-Therefore,
-\begin{align}
-    \pr{X>1} &\approx 1-0.978 \\
-             &= 0.022
+    \pr{X>1} &= 1-F_X(1) \\
+             &\approx 1-0.978 \\
+             &= 0.022 
 \end{align}
 
 \end{enumerate}
@@ -203,11 +190,10 @@ Therefore,
 \begin{frame}{Solution}
 \begin{enumerate}[label=(\roman*)]
   \setcounter{enumi}{3}
-\item The probability to be found corresponds to $\pr{X>=1}$. This is equivalent to $1-\pr{X<1} = 1-\pr{X=0}$ (Since $X<1$ and $X>=1$ are mutually exclusive).
-
-Substituting the value found in \ref{eq5}:
+\item The probability to be found corresponds to $\pr{X>=1}$. This is equivalent to $1-\pr{X<1} = 1-p_X(0)$ Therefore,
 \begin{align}
-    1-\pr{X=0} &\approx 1-0.774 \\
+    \pr{X>=1} &1-p_X(0) \\
+             &= 1-0.774 \\
              &= 0.226
 \end{align}
 \end{enumerate}
