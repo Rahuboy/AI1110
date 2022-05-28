@@ -1,0 +1,156 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Welcome to Overleaf --- just edit your LaTeX on the left,
+% and we'll compile it for you on the right. If you open the
+% 'Share' menu, you can invite other users to edit at the same
+% time. See www.overleaf.com/learn for more info. Enjoy!
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Inbuilt themes in beamer
+\documentclass{beamer}
+
+%packages:
+% \usepackage{tfrupee}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{gensymb}
+% \usepackage{txfonts}
+
+% \def\inputGnumericTable{}
+
+% \usepackage[latin1]{inputenc}                                 
+% \usepackage{color}                                            
+% \usepackage{array}                                            
+% \usepackage{longtable}                                        
+% \usepackage{calc}                                             
+% \usepackage{multirow}                                         
+% \usepackage{hhline}                                           
+% \usepackage{ifthen}
+% \usepackage{caption} 
+% \captionsetup[table]{skip=3pt}  
+% \providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+% \providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+% %\renewcommand{\thefigure}{\arabic{table}}
+% \renewcommand{\thetable}{\arabic{table}}      
+
+\setbeamertemplate{caption}[numbered]{}
+
+\usepackage{tfrupee}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{txfonts}
+
+\def\inputGnumericTable{}
+
+\usepackage[latin1]{inputenc}                                 
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                        
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}
+\usepackage{caption} 
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+\renewcommand{\thefigure}{\arabic{table}}
+\renewcommand{\thetable}{\arabic{table}}   
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+
+% Theme choice:
+\usetheme{CambridgeUS}
+
+% Title page details: 
+\title{Assignment 11} 
+\author{Rahul Ramachandran}
+\date{\today}
+% \logo{\large \LaTeX{}}
+
+
+\begin{document}
+
+% Title page frame
+\begin{frame}
+    \titlepage 
+\end{frame}
+
+% Remove logo from the next slides
+\logo{}
+
+
+% Outline frame
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+
+
+\section{Problem Statement}
+\begin{frame}{Problem Statement}
+    \begin{block}{Papoulis 5.50 } A biased coin is tossed and the first outcome is noted. The tossing is continued until the outcome is the complement of the first outcome, thus completing the first run. Let $X$ denote the length of the first run. Find the p.m.f of $X$, and show that   $$ E\{ X \} = \frac{p}{q} + \frac{q}{p}  $$   \end{block}
+\end{frame}
+
+\section{Definitions}
+\begin{frame}{Definitions}
+\begin{itemize}
+    \item As specified in the question, we let the random variable $X$ map to the set $\{ 1,2, \ldots \}$ based on the length of the run. We take the length to equal the number of consecutive heads or tails.
+    \item We let $H$ represent the event of "heads" and $T$ represent the event of "tails". A string of $H$s and $T$s represents consecutive heads and tails (for example, $HT$ represents heads and then tails).
+    \item Let $\pr{H}=p = 1-q$ 
+\end{itemize}
+
+\end{frame}
+
+
+\section{Solution}
+\begin{frame}{Solution}
+ Consider the case when $X$ maps to $1$. This represents two distinct events, $HT$ and $TH$. Since these events are mutually exclusive, we have:
+ \begin{align}
+     \pr{X=1} &= \pr{HT+TH} \\
+              &= \pr{HT} + \pr{TH} \\
+              &= \pr{H} \pr{T} + \pr{H} \pr{T} \\
+              &= 2pq
+ \end{align}
+\end{frame}
+
+\begin{frame}{Solution}
+    We can thus similarly find the probability mass function as under
+    \begin{align}
+     p_X(k)&=\pr{X=k} \\
+           &= \pr{TT \ldots TH + HH \ldots HT} \\
+           &= \pr{TT \ldots TH} + \pr{HH \ldots HT} \\
+           &= q^kp + p^kq
+ \end{align}
+\end{frame}
+
+
+\begin{frame}{Solution}
+From this, the expectation value $E(X)$ is given by:
+\begin{align}
+    E(X) &= \sum_{k=1} ^ \infty {k \times p_X(k)} \\
+         &= \sum_{k=1} ^ \infty {k \times (q^kp + p^kq)} \\
+         \label{eq11}
+         &= pq \times \brak{\sum_{k=1} ^ \infty {kp^{k-1}} + \sum_{k=1} ^ \infty {kq^{k-1}} }
+\end{align}
+
+\end{frame}
+
+\begin{frame}{Solution}
+Equation \ref{eq11} can be manipulated as under:
+\begin{align}
+   pq \times \brak{\sum_{k=1} ^ \infty {kp^{k-1}} + \sum_{k=1} ^ \infty {kq^{k-1}} } &=  pq \times \brak{ \frac{d}{dp} \sum_{k=1} ^ \infty {p^{k}} + \frac{d}{dq} \sum_{k=1} ^ \infty {q^{k}}} \\
+     &= pq \times \brak{ \frac{d}{dp} \brak{\frac{p}{1-p}} + \frac{d}{dq} \brak{\frac{q}{1-q}}} \\
+     &= pq \times \brak{\frac{1}{(1-q)^2}+\frac{1}{(1-p)^2}} \\
+     &= pq \times \brak{\frac{1}{p^2}+\frac{1}{q^2}} \\
+     &= \frac{p}{q} + \frac{q}{p}
+\end{align}
+
+\end{frame}
+
+
+
+
+
+\end{document}T
