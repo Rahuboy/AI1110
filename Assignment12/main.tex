@@ -1,0 +1,158 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Welcome to Overleaf --- just edit your LaTeX on the left,
+% and we'll compile it for you on the right. If you open the
+% 'Share' menu, you can invite other users to edit at the same
+% time. See www.overleaf.com/learn for more info. Enjoy!
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Inbuilt themes in beamer
+\documentclass{beamer}
+
+%packages:
+% \usepackage{tfrupee}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{gensymb}
+% \usepackage{txfonts}
+
+% \def\inputGnumericTable{}
+
+% \usepackage[latin1]{inputenc}                                 
+% \usepackage{color}                                            
+% \usepackage{array}                                            
+% \usepackage{longtable}                                        
+% \usepackage{calc}                                             
+% \usepackage{multirow}                                         
+% \usepackage{hhline}                                           
+% \usepackage{ifthen}
+% \usepackage{caption} 
+% \captionsetup[table]{skip=3pt}  
+% \providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+% \providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+% %\renewcommand{\thefigure}{\arabic{table}}
+% \renewcommand{\thetable}{\arabic{table}}      
+
+\setbeamertemplate{caption}[numbered]{}
+
+\usepackage{tfrupee}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{txfonts}
+
+\def\inputGnumericTable{}
+
+\usepackage[latin1]{inputenc}                                 
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                        
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}
+\usepackage{caption} 
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+\renewcommand{\thefigure}{\arabic{table}}
+\renewcommand{\thetable}{\arabic{table}}   
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+
+% Theme choice:
+\usetheme{CambridgeUS}
+
+% Title page details: 
+\title{Assignment 12} 
+\author{Rahul Ramachandran}
+\date{\today}
+% \logo{\large \LaTeX{}}
+
+
+\begin{document}
+
+% Title page frame
+\begin{frame}
+    \titlepage 
+\end{frame}
+
+% Remove logo from the next slides
+\logo{}
+
+
+% Outline frame
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+
+
+\section{Problem Statement}
+\begin{frame}{Problem Statement}
+    \begin{block}{Papoulis 6.44}  $X$ and $Y$ are independent, identically distributed binomial random variables with parameters $n$ and $p$. Show that $Z = X + Y$ is also a binomial random variable. Find its parameters. \end{block}
+\end{frame}
+
+\section{Definitions}
+\begin{frame}{$Z-$transform}
+ Let the $Z-$transform of the discrete random variable $X$ be defined as
+ \begin{align}
+     \mathcal{M}_X(z) &= E(z^{-X}) \\
+                      &= \sum_{k=-\infty} ^\infty {z^{-k} p_X(k)}
+ \end{align}
+ 
+    When $X$ is a binomial random variable with parameters $n$ and $p$:
+    
+ \begin{align}
+     \mathcal{M}_X(z) = \sum_{k=0} ^n {z^{-k} \binom{n}{k} p^k q^{n-k}} 
+ \end{align}                   
+ 
+    
+
+\end{frame}
+
+
+\section{Solution}
+\begin{frame}{Solution}
+ Events $X$ and $Y$ are given to be independent. Then:
+ \begin{align}
+      \mathcal{M}_Z(z) &= \mathcal{M}_{X+Y}(z) \\
+      &= E(z^{-(X+Y)}) \\
+      &=  E(z^{-X}) E(z^{-Y}) \\
+      \label{eq7}
+      &= \brak{\sum_{k=0} ^n {z^{-k} \binom{n}{k} p^k q^{n-k}}} \brak{ \sum_{l=0} ^n {z^{-l} \binom{n}{l} p^l q^{n-l}} }
+ \end{align}
+\end{frame}
+
+\begin{frame}{Solution}
+    Converting the summation in Equation \ref{eq7} to binomials, we get:
+    \begin{align}
+      \mathcal{M}_Z(z) &= (q+pz^{-1})^n (q+pz^{-1})^n \\
+      &= (q+pz^{-1})^{2n}
+ \end{align}
+ 
+ Expanding this, we get:
+ 
+ \begin{align}
+        \label{eq10}
+      \mathcal{M}_Z(z) &= \sum_{k=0} ^{2n} {z^{-k} \binom{2n}{k} p^k q^{2n-k}}
+ \end{align}
+ 
+ 
+\end{frame}
+
+
+\begin{frame}{Solution}
+Since there is a one-to-one correspondence between the $Z-$transform and the random variable's pmf, it follows from Equation \ref{eq10} that:
+
+\begin{align}
+        p_Z(k) = \binom{2n}{k} p^k q^{2n-k} ,~ 0 \le k \le 2n
+ \end{align}
+
+Therefore, it follows that $Z$ is a binomial random variable.
+
+\end{frame}
+
+
+
+\end{document}
