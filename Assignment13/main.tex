@@ -1,0 +1,161 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Welcome to Overleaf --- just edit your LaTeX on the left,
+% and we'll compile it for you on the right. If you open the
+% 'Share' menu, you can invite other users to edit at the same
+% time. See www.overleaf.com/learn for more info. Enjoy!
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Inbuilt themes in beamer
+\documentclass{beamer}
+
+%packages:
+% \usepackage{tfrupee}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{gensymb}
+% \usepackage{txfonts}
+
+% \def\inputGnumericTable{}
+
+% \usepackage[latin1]{inputenc}                                 
+% \usepackage{color}                                            
+% \usepackage{array}                                            
+% \usepackage{longtable}                                        
+% \usepackage{calc}                                             
+% \usepackage{multirow}                                         
+% \usepackage{hhline}                                           
+% \usepackage{ifthen}
+% \usepackage{caption} 
+% \captionsetup[table]{skip=3pt}  
+% \providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+% \providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+% %\renewcommand{\thefigure}{\arabic{table}}
+% \renewcommand{\thetable}{\arabic{table}}      
+
+\setbeamertemplate{caption}[numbered]{}
+
+\usepackage{tfrupee}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{txfonts}
+
+\def\inputGnumericTable{}
+
+\usepackage[latin1]{inputenc}                                 
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                        
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}
+\usepackage{caption} 
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+\renewcommand{\thefigure}{\arabic{table}}
+\renewcommand{\thetable}{\arabic{table}}   
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+
+% Theme choice:
+\usetheme{CambridgeUS}
+
+% Title page details: 
+\title{Assignment 13} 
+\author{Rahul Ramachandran}
+\date{\today}
+% \logo{\large \LaTeX{}}
+
+
+\begin{document}
+
+% Title page frame
+\begin{frame}
+    \titlepage 
+\end{frame}
+
+% Remove logo from the next slides
+\logo{}
+
+
+% Outline frame
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+
+
+\section{Problem Statement}
+\begin{frame}{Problem Statement}
+    \begin{block}{Papoulis 8.10} Among $4000$ newborns, $2080$ are male. Find the $0.99$ confidence interval of the probability
+$p = P$(male) \end{block}
+\end{frame}
+
+\section{Discussion}
+\begin{frame}{Discussion}
+ We are given a sample space of babies, and are required to provide an estimate of parameter $p$: the proportion of babies in a population that are male.
+ 
+ Let the random variable $X$ map to 0 when the baby is female, and $1$ otherwise. Let the average value of $X_i$ for the given sample space be $\hat{p}$. We can use $\hat{p} = 1 - \hat{q}$ to estimate an interval that $p$ is likely to lie in.
+
+\end{frame}
+
+
+
+
+\begin{frame}{Solution}
+ Since $\hat{p} = \frac{\sum X_i}{n}$, and since $n$ is large, the sampling distribution of sample proportion can be approximated to a normal distribution, by the Central Limit Theorem.
+ 
+ To find the confidence interval, we assume that the mean of this normal distribution is $\hat{p}$, and that the standard deviation is $\sigma_{\hat{p}} = \sqrt{\frac{\hat{p} \hat{q}}{n}}$
+\end{frame}
+
+\section{Solution}
+\begin{frame}{Solution}
+We have
+\begin{align}
+    \hat{p} &= 2080/4000 \\
+            &= 0.52
+ \end{align}
+ Also,
+     \begin{align}
+    \sigma_{\hat{p}} &= \sqrt{\frac{0.52(1-0.52)}{4000}} \\
+    &= 0.0079
+ \end{align}
+
+
+\end{frame}
+
+\begin{frame}{Solution}
+    To find the interval, we use the $z-$score, which tells us the number of standard deviations between the end-points of the confidence interval and the mean.
+    Since we are interested in the $0.99$ confidence interval, we have
+    
+     \begin{align}
+     \gamma &= 0.99 \\ 
+     \implies \delta &= 1 - \gamma \\
+     &= 0.01 
+ \end{align}
+ 
+ Therefore, we have to find $z$ corresponding to $\delta = 0.01$, which from the $z$-score table equals $2.58$
+    
+\end{frame}
+
+
+\begin{frame}{Solution}
+    Therefore, it follows that
+    \begin{align}
+        p_u &= \mu + z\sigma \\
+        &= 0.52 + 2.58 \times 0.0079 \\
+        &= 0.54
+    \end{align}
+    where $p_u$ is the upper limit of the interval. Similarly, 
+    \begin{align}
+        p_l &= \mu - z\sigma \\
+        &= 0.52 - 2.58 \times 0.0079 \\
+        &= 0.49
+    \end{align}
+    Therefore, the $0.99$ confidence interval for $p$ is $[0.49,0.54]$
+\end{frame}
+
+\end{document}
