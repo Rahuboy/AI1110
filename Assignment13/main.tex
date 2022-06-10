@@ -94,26 +94,173 @@
 $p = P$(male) \end{block}
 \end{frame}
 
+\section{Definitions}
+\begin{frame}{Definitions}
+
+\begin{itemize}
+    \item A \textbf{Confidence Interval} is an estimate for an unknown parameter. It is governed by a number $\gamma = 1 - \delta$, which determines the accuracy of the estimation method. $\gamma$ is called the \textbf{confidence coefficient}.
+    \item A \textbf{$z$-score} is the number of standard deviations a data point is away from the mean.
+    \item If $\hat{p}$ is a sample mean, the distribution of $\hat{p}$ is called the \textbf{sampling distribution of the sample means}.
+    \item To find the confidence interval, we find the points on the $x-$axis between which the area under the curve equals $\gamma A$
+\end{itemize}
+
+
+    
+\end{frame}
+
 \section{Discussion}
-\begin{frame}{Discussion}
- We are given a sample space of babies, and are required to provide an estimate of parameter $p$: the proportion of babies in a population that are male.
- 
- Let the random variable $X$ map to 0 when the baby is female, and $1$ otherwise. Let the average value of $X_i$ for the given sample space be $\hat{p}$. We can use $\hat{p} = 1 - \hat{q}$ to estimate an interval that $p$ is likely to lie in.
+\begin{frame}{Binomial Distribution Mean}
+Let the random variable $X$ be the sum of $n$ Bernoulli random variables, i.e.
+\begin{align}
+     X = X_1 + X_2 + \ldots +X_n
+ \end{align}
+ For simplicity, assume $E(X_i) = p$. Then, 
+ \begin{align}
+     E(X) &= E(X_1 + X_2 + \ldots +X_n) \\
+     &= E(X_1) + E(X_2) + \ldots + E(X_n) \\
+     &= p + p + \ldots + p \\
+     \label{eq5}
+     &= np
+ \end{align}
+
 
 \end{frame}
 
 
+\begin{frame}{Binomial Distribution Variance}
+The variance is given by:
+
+ \begin{align}
+     E((X-np)^2) &= E(X^2-2Xnp+n^2p^2) \\
+     &= E(X^2) -2npE(X) + E(n^2p^2) \\
+     \label{eq8}
+     &= E(X^2) - n^2p^2 
+ \end{align}
+ Now,
+ \begin{align}
+     E(X^2) &= \sum _{k=0} ^n k^2 \times \binom{n}{k} p^k q^{n-k}\\
+     &= \sum _{k=1} ^n npk \times \binom{n-1}{k-1} p^{k-1} q^{n-k} 
+ \end{align}
 
 
-\begin{frame}{Solution}
- Since $\hat{p} = \frac{\sum X_i}{n}$, and since $n$ is large, the sampling distribution of sample proportion can be approximated to a normal distribution, by the Central Limit Theorem.
- 
- To find the confidence interval, we assume that the mean of this normal distribution is $\hat{p}$, and that the standard deviation is $\sigma_{\hat{p}} = \sqrt{\frac{\hat{p} \hat{q}}{n}}$
 \end{frame}
+
+\begin{frame}{Binomial Distribution Variance}
+Since $k = (k-1) + 1$, we have:
+
+ \begin{align}
+     \sum _{k=1} ^n npk \times \binom{n-1}{k-1} p^{k-1} q^{n-k}  &=  n(n-1)p^2  \times \sum_{k=2} ^n\binom{n-2}{k-2} p^{k-2}q^{n-k}  \nonumber \\&+ np \times \sum_{k=1} ^n \binom{n-1}{k-1} p^{k-1} q^{n-k}\\
+     &= n(n-1)p^2  (p+q)^{n-2} + np  (p+q)^{n-1} \\
+     &= n(n-1)p^2 + np
+ \end{align}
+Substituting this in Equation \ref{eq8}, we have:
+
+\begin{align}
+    \sigma^2 &= (n(n-1)p^2 + np) -n^2p^2 \\
+    &= np - np^2 
+\end{align}
+
+\end{frame}
+
+\begin{frame}{Binomial Distribution}
+Therefore:
+    \begin{align}
+        \sigma^2 &= np-np^2 \\
+        &= np(1-p) \\
+        \label{eq18}
+        &= npq
+    \end{align}
+Let the random variable $Y = \frac{X}{n}$. Then, $Y$ is a binomial random variable that maps to $\frac{k}{n}$ when $X$ maps to $k$. Therefore, 
+\begin{align}
+        \mu_Y &= \frac{\mu_X}{n} \\
+        &= p \\
+        \sigma^2_Y &= \frac{\sigma^2_X}{n^2} \\
+           &= \frac{pq}{n}
+    \end{align}
+\end{frame}
+
+
+\begin{frame}{De Moivre-Laplace Theorem}
+    The \textbf{De Moivre-Laplace Theorem} states that for large $n$ (and a significant value of $np$), the Normal Distribution can be used to approximate a Binomial Distribution.
+    
+    Let the point $k$ in a Binomial distribution equal $\mu + c\sigma$, where $c$ is an arbitrary constant. Therefore, from Equation \ref{eq5} and Equation \ref{eq18}:
+    
+    \begin{align}
+        k = np + c \sqrt{npq}
+    \end{align}
+    
+    The differential equation for a Normal Distribution is:
+    
+    \begin{align}
+        \label{eq24}
+        \frac{f'(x)}{f(x)} \brak{-\frac{\sigma^2}{x-\mu}} = 1
+    \end{align}
+    
+    
+\end{frame}
+
+\begin{frame}{De Moivre-Laplace Theorem}
+    If we show that the pdf of the Binomial Distribution satisfies Equation \ref{eq24}, we have proved the theorem.
+    Since the Binomial Distribution is discrete, we consider the discrete analogue of the derivative, $p(k+1)-p(k)$.
+    
+    \begin{align}
+          \frac{f'(x)}{f(x)} \brak{-\frac{\sigma^2}{x-\mu}} &=   \frac{p(k+1)-p(k)}{p(k)} \brak{\frac{\sqrt{npq}}{-c}} \\
+          &= \frac{\binom{n}{k+1}p^{k+1}q^{n-(k+1)} + \binom{n}{k}p^{k}q^{n-k} }{\binom{n}{k}p^{k}q^{n-k}}  \brak{\frac{\sqrt{npq}}{-c}} \\
+          &= \brak{\frac{(n-k)p}{(k+1)q}-1}\brak{\frac{\sqrt{npq}}{-c}} \\ 
+          &= \frac{np-k-q}{(k+1)q}\brak{\frac{\sqrt{npq}}{-c}}
+    \end{align}
+    
+
+\end{frame}
+
+\begin{frame}{De Moivre-Laplace Theorem}
+    Substituting for $k$, we get:
+    
+    \begin{align}
+        \frac{f'(x)}{f(x)} \brak{-\frac{\sigma^2}{x-\mu}} &= \frac{-c\sqrt{npq}-q}{npq+cq\sqrt{npq}+q}\brak{\frac{\sqrt{npq}}{-c}}
+    \end{align}
+    As $n \rightarrow \infty$
+    \begin{align}
+        \frac{-c\sqrt{npq}-q}{npq+cq\sqrt{npq}+q}\brak{\frac{\sqrt{npq}}{-c}} &\rightarrow 1
+    \end{align}
+    
+    Therefore, the De Moivre-Laplace Theorem holds.
+    
+
+\end{frame}
+
+\begin{frame}{Confidence Interval}
+    Consider a Normal Distribution of sample means symmetric about $x=p$. Let the number $z$ be chosen such that the area between $x=-\infty$ and $x=\mu + z\sigma = A(1-\frac{\delta}{2})$, where $A$ is the area under the whole curve.
+    
+    Then: 
+    \begin{align}
+        Ar(\mu - z\sigma \leq x \leq \mu + z\sigma) &= A(1-\delta) \\
+        \implies \pr{p - z\sigma \leq \hat{p} \leq p + z\sigma } &= 1-\delta
+    \end{align}
+Analogously, for a Normal Distribution symmetric about $\hat{p}$, with variance $\sigma^2$,
+
+\begin{align}
+       \pr{\hat{p} - z\sigma \leq p \leq \hat{p} + z\sigma } &= 1-\delta
+    \end{align}
+
+\end{frame}
+
+\begin{frame}{Confidence Interval}
+    The interval $[\hat{p} - z\sigma,   \hat{p} + z\sigma ]$ is called the  $\gamma$ confidence interval of $\hat{p}$. Often, we aren't aware of the exact value of $p$, so we approximate it as under:
+    
+    \begin{align}
+        \sigma &=  \sqrt{\frac{pq}{n}} \\
+        &\approx \sqrt{\frac{\hat{p}\hat{q}}{n}}
+    \end{align}
+
+Since all the values are now known, we can find an estimate for the confidence interval of $\hat{p}$
+
+\end{frame}
+
 
 \section{Solution}
 \begin{frame}{Solution}
-We have
+Since there are $4000$ babies and $2080$ girls, for the sample, we have:
 \begin{align}
     \hat{p} &= 2080/4000 \\
             &= 0.52
@@ -128,7 +275,7 @@ We have
 \end{frame}
 
 \begin{frame}{Solution}
-    To find the interval, we use the $z-$score, which tells us the number of standard deviations between the end-points of the confidence interval and the mean.
+    
     Since we are interested in the $0.99$ confidence interval, we have
     
      \begin{align}
