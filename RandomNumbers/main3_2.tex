@@ -81,7 +81,7 @@
 
 \section{Problem Statement}
 \begin{frame}{Problem Statement}
-    \begin{block}{(2.5)} Find the mean and variance of $p_X(x)=\frac{1}{\sqrt{2\pi}}\exp{(-\frac{x^2}{2})}$
+    \begin{block}{(2.5)} Find a theoretical expression for $F_V(x)$, where $V = -2\ln(1-U)$.
     \end{block}
 \end{frame}
 
@@ -90,27 +90,38 @@
 We have:
 
 \begin{align}
-    E[X] &=  \int_{-\infty}^{\infty} \frac{x}{\sqrt{2\pi}}\exp{\left(-\frac{x^2}{2}\right)} \\
-    &= -\frac{1}{\sqrt{2\pi}}\exp\brak{-\frac{x^2}{2}} \Bigg{|}_{-\infty}^{\infty} \\
-    &= 0 
+F_V(x) &= \pr{V \leq x} \\
+&= \pr{-2\ln(1-U) \leq x} \\
+&= \pr{1-U \geq	\exp{\left(-\frac{x}{2}\right)}} \\
+&= \pr{U \leq 1 - \exp{\left(-\frac{x}{2}\right)}} \\
+&= F_U\left(1 - \exp{\left(-\frac{x}{2}\right)}\right) 
 \end{align}
 
 \end{frame}
 
-Also,
 
+
+\begin{frame}{Solution}
+Therefore,
 \begin{align}
-    E[X^2] &=  \int_{-\infty}^{\infty} \frac{x^2}{\sqrt{2\pi}}\exp{\left(-\frac{x^2}{2}\right)} \\
-    &= -\frac{x}{\sqrt{2\pi}}\exp\brak{-\frac{x^2}{2}} \Bigg{|}_{-\infty}^{\infty} + \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}}\exp\brak{-\frac{x^2}{2}}   \\
-    &= 0 + \frac{1}{\sqrt{2\pi}} \times \sqrt{2\pi} \\
-    &= 1
+   F_V(x) =
+    \begin{cases}
+        0, & 1 - \exp{\left(-\frac{x}{2}\right)} \in (-\infty,0) \\
+        1 - \exp{\left(-\frac{x}{2}\right)}, & 1 - \exp{\left(-\frac{x}{2}\right)} \in (0,1) \\
+        1, & 1 - \exp{\left(-\frac{x}{2}\right)} \in (1, \infty)
+    \end{cases}
 \end{align}
 
-Hence, 
+From this we get:
 
 \begin{align}
-    \text{var}(X) &= E[X^2] - E[X]^2 \\ 
-    &= 1 
+   F_V(x) =
+    \begin{cases}
+        0, & x \in (-\infty,0) \\
+        1 - \exp{\left(-\frac{x}{2}\right)}, & x \in (0,\infty) 
+    \end{cases}
 \end{align}
+\end{frame}
 
 \end{document}
+
