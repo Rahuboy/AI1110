@@ -288,7 +288,7 @@ fp2 = fopen(str, "w");
 //get numbers from file
 while(fscanf(fp,"%lf",&x)!=EOF)
 {
-  temp = -log(1-x);
+  temp = -2*log(1-x);
   fprintf(fp2,"%lf\n",temp);
 }
 
