@@ -7,13 +7,13 @@ int  main(void) //main function begins
 {
  
 //Uniform random numbers
-uniform("uni.dat", 1000000);
+// uniform("uni.dat", 1000000);
 
 //Gaussian random numbers
-gaussian("gau.dat", 1000000);
+// gaussian("gau.dat", 1000000);
 
 //Logarithmic random numbers
-logarithmic("log.dat");
+// logarithmic("log.dat");
 
 //Mean of uniform
 printf("%lf\n",mean("gau.dat"));
