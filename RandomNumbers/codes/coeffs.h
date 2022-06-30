@@ -226,7 +226,7 @@ temp = temp/(i-1);
 return temp;
 
 }
-//End function for calculating the mean of random numbers
+//End function for calculating the variance of random numbers
 
 //Defining the function for calculating the mean of random numbers
 double variance(char *str)
@@ -250,7 +250,7 @@ temp = temp/(i-1);
 return temp - mn*mn ;
 
 }
-//End function for calculating the mean of random numbers
+//End function for calculating the variance of random numbers
 
 
 
@@ -278,6 +278,7 @@ fclose(fp);
 }
 //End function for generating Gaussian random numbers
 
+//Function for Rayleigh Distribution
 void logarithmic(char *str){
   int i=0,c;
 FILE *fp, *fp2;
