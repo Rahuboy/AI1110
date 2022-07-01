@@ -10,7 +10,10 @@ double **matmul(double **a, double **b, int m, int n, int p);
 double **transpose(double **a,  int m, int n);
 void uniform(char *str, int len);
 void gaussian(char *str, int len);
+void triangular(char *str, int len);
+void logarithmic(char *str);
 double mean(char *str);
+double variance(char *str);
 //End function declaration
 
 
@@ -277,6 +280,30 @@ fclose(fp);
 
 }
 //End function for generating Gaussian random numbers
+
+
+void triangular(char *str, int len)
+{
+int i,j;
+double temp;
+FILE *fp;
+
+fp = fopen(str,"w");
+//Generate numbers
+for (i = 0; i < len; i++)
+{
+temp = 0;
+for (j = 0; j < 2; j++)
+{
+temp += (double)rand()/RAND_MAX;
+}
+fprintf(fp,"%lf\n",temp);
+}
+fclose(fp);
+
+}
+
+
 
 //Function for Rayleigh Distribution
 void logarithmic(char *str){

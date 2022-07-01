@@ -660,14 +660,165 @@ Therefore,
         \end{figure}
     The CDF of $V$ is plotted in Fig. \ref{fig:log_cdf}
 
-
-
-
-
-
 %
 %\item
 %Generate the Rayleigh distribution from Uniform. Verify your result through graphical plots.
+
+    \end{enumerate}
+
+
+
+
+\section{Triangular Distributions}
+\begin{enumerate}[label=\thesection.\arabic*
+    ,ref=\thesection.\theenumi]
+\item Generate 
+	\begin{align}
+		T = U_1+U_2
+	\end{align}
+\\
+\solution Use the function 'triangular' in \textbf{exrand.c} and execute the following code:
+\begin{lstlisting}
+wget https://github.com/Rahuboy/AI1110/blob/main/RandomNumbers/codes/coeffs.h
+wget https://github.com/Rahuboy/AI1110/blob/main/RandomNumbers/codes/exrand.c
+gcc exrand.c
+./a.out
+    \end{lstlisting}
+
+\item Find the CDF of $T$.
+\\
+
+\solution  
+
+\begin{lstlisting}
+    wget https://github.com/Rahuboy/AI1110/blob/main/RandomNumbers/codes/cdf_plot.py
+    python3 cdf_plot.py
+    \end{lstlisting}
+  
+    \begin{figure}
+        \centering
+        \includegraphics[width=\columnwidth]{./figures/CDF_tri.png}
+        \caption{The CDF of $T$}
+        \label{fig:tri_cdf}
+        \end{figure}
+
+        The above code plots Fig. \ref{fig:tri_cdf}
+
+\item Find the PDF of $T$.
+
+\begin{lstlisting}
+    wget https://github.com/Rahuboy/AI1110/blob/main/RandomNumbers/codes/pdf_plot.py
+    python3 pdf_plot.py
+    \end{lstlisting}
+
+  
+    \begin{figure}
+        \centering
+        \includegraphics[width=\columnwidth]{./figures/PDF_tri.png}
+        \caption{The PDF of $T$}
+        \label{fig:tri_pdf}
+        \end{figure}
+
+        The above code plots Fig. \ref{fig:tri_pdf}
+ 
+\item Find the theoretical expressions for the PDF and CDF of $T$.
+\\
+\solution When 
+\begin{align}
+    Z = X + Y
+\end{align}
+where X, Y and Z are random variables, we have:
+\begin{align}
+    p_Z(t) &= (p_X * p_Y)(t) \\
+    &= \int _{-\infty} ^{\infty} p_X(\tau) p_Y(t-\tau) d\tau
+\end{align}
+
+Here, $p_X(t) = p_Y(t) = p_U(t) $. Therefore:
+\begin{align}
+    p_T(t) &= \int _{-\infty} ^{\infty} p_U(\tau) p_U(t-\tau) d\tau \\
+    &= \int _0 ^1 p_U(t-\tau) d\tau
+\end{align}
+
+When $t < 0$ and $t > 2$ , the integral evaluates to $0$. When $0 < t < 1$:
+\begin{align}
+    p_T(t)  &= \int _0 ^1 p_U(t-\tau) d\tau \\
+    &= \int _0 ^t p_U(t-\tau) d\tau \\
+    &= \int _0 ^t 1 d\tau \\
+    &= t
+\end{align}
+
+when $ 1 < t < 2$:
+\begin{align}
+    p_T(t)  &= \int _0 ^1 p_U(t-\tau) d\tau \\
+    &= \int _{t-1} ^1 p_U(t-\tau) d\tau \\
+    &= \int _{t-1} ^1 1 d\tau \\
+    &= 2-t
+\end{align}
+
+Therefore, we have:
+\begin{align}
+    p_T(x) = 
+    \begin{cases}
+        0, & x \in (-\infty,0) \\
+        x, & x \in (0,1) \\
+        2-x, & x \in (1, 2) \\
+        0, & x \in (2,\infty)
+    \end{cases}
+\end{align}
+
+To find the CDF, we use:
+\begin{align}
+    F_T(x) = \int _{-\infty} ^x p_T(t) dt
+\end{align}
+
+We get:
+\begin{align}
+    F_T(x) = 
+    \begin{cases}
+        0, & x \in (-\infty,0) \\
+        \frac{x^2}{2}, & x \in (0,1) \\
+        -\frac{x^2}{2} + 2x - 1, & x \in (1, 2) \\
+        1, & x \in (2,\infty)
+    \end{cases}
+\end{align}
+
+
+\item Verify your result for the PDF through a plot. 
+\\
+\solution Execute the following code:
+\begin{lstlisting}
+    python3 pdf_plot.py
+\end{lstlisting}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\columnwidth]{./figures/PDF_tri_sim.png}
+    \caption{The PDF of $T$}
+    \label{fig:tri_pdf_sim}
+    \end{figure}
+
+    The theoretical PDF is plotted in Fig. \ref{fig:tri_pdf_sim}    
+
+    \item Verify your result for the CDF through a plot. 
+\\
+\solution Execute the following code:
+\begin{lstlisting}
+    python3 cdf_plot.py
+\end{lstlisting}
+
+The theoretical CDF is plotted in Fig. \ref{fig:tri_cdf_sim}    
+    
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\columnwidth]{./figures/CDF_tri_sim.png}
+    \caption{The CDF of $T$}
+    \label{fig:tri_cdf_sim}
+    \end{figure}
+
+   
+        
+
 \end{enumerate}
 
 
