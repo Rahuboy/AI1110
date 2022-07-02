@@ -32,6 +32,7 @@ vec_unit_cdf = np.vectorize(fp.unit_cdf, otypes=[np.float])
 vec_gau_cdf = np.vectorize(fp.gau_cdf, otypes=[np.float])
 vec_log_cdf = np.vectorize(fp.log_cdf, otypes=[np.float])
 vec_tri_cdf = np.vectorize(fp.tri_cdf, otypes=[np.float])
+vec_q_gau_cdf = np.vectorize(fp.q_gau_cdf, otypes=[np.float])
 
 a = []
 
@@ -39,8 +40,15 @@ for i in range(1,11):
 	a.append(i*0.5)
 
 
-plt.plot(np.array(a), np.loadtxt('proberr_graph',dtype='double'))
+
+
+# plt.plot(np.array(a), np.loadtxt('proberr_graph.dat',dtype='double'),'o') #plotting proberr graph
+# plt.plot(xx,vec_q_gau_cdf(xx))
 	
+
+
+
+
 # plt.plot(x.T, err, 'o')#plotting the CDF
 # plt.plot(xx,vec_unit_cdf(xx)) #plotting theoretical unit CDF
 # plt.plot(xx,vec_gau_cdf(xx)) #plotting theoretical gaussian CDF

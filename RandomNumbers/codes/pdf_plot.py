@@ -38,13 +38,16 @@ for i in range(0,maxrange-1):
 vec_gauss_pdf = scipy.vectorize(fp.gauss_pdf)
 vec_tri_pdf = np.vectorize(fp.tri_pdf, otypes=[np.float])
 
+
+# plt.plot(np.array(range(0,1000000)),randvar, 'o') #Plotting noise (Y)
+
+
 # plt.plot(x[0:(maxrange-1)].T,pdf, 'o')
-# plt.plot(np.array(range(0,1000000)),randvar, 'o') #Plotting noise
 # plt.plot(xx, vec_tri_pdf(xx))
 plt.grid() #creating the grid
-plt.xlabel('$x_i$')
-plt.ylabel('$p_X(x_i)$')
-plt.legend(["Numerical","Theory"])
+plt.xlabel('$x$')
+plt.ylabel('$Y$')
+# plt.legend(["Numerical","Theory"])
 
 #if using termux
 # plt.savefig('../figs/uni_pdf.pdf')
