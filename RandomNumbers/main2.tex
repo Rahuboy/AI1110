@@ -501,13 +501,20 @@ Add the following line to \textbf{exrand.c} and execute the code:
 \item
 Load gau.dat in python and plot the empirical CDF of $X$ using the samples in gau.dat. What properties does a CDF have?
 \\
-\solution The CDF of $X$ is plotted in Fig. \ref{fig:gauss_cdf}
+\solution 
+
+
+
+
+The CDF of $X$ is plotted in Fig. \ref{fig:gauss_cdf}
 \begin{figure}
 \centering
 \includegraphics[width=\columnwidth]{./figures/CDF_gau.png}
 \caption{The CDF of $X$}
 \label{fig:gauss_cdf}
 \end{figure}
+
+
 \item
 Load gau.dat in python and plot the empirical PDF of $X$ using the samples in gau.dat. The PDF of $X$ is defined as
 \begin{align}
@@ -527,6 +534,11 @@ python3 pdf_plot.py
 \caption{The PDF of $X$}
 \label{fig:gauss_pdf}
 \end{figure}
+
+To find the CDF theoretically, consider
+
+
+
 
 \item Find the mean and variance of $X$ by writing a C program.
 \\
@@ -575,6 +587,22 @@ Hence,
 Therefore, the mean is $0$ and the variance is $1$. Running the empirical code in \textbf{./codes/exrancd.c}, 
    we get mean = $0.000685$ and variance = $1.000025$, which closely matches the theoretical values.
 
+
+\item Find the theoretical CDF of $X$
+\\
+\solution
+ To find the theoretical CDF, consider:
+
+\begin{align}
+    Q_X(x) &= \int_x ^{\infty} \frac{1}{\sqrt{2\pi}} e^{\frac{-x^2}{2}} dx \\
+      &= \frac{\text{erfc}(\frac{x}{\sqrt{2}})}{2}
+   \end{align}
+
+The CDF is then:
+\begin{align}
+    F_X(x) &= 1 - Q_X(x) \\
+    &= 1 - \frac{\text{erfc}(\frac{x}{\sqrt{2}})}{2}
+\end{align}
 
 %
 \end{enumerate}
