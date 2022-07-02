@@ -14,6 +14,7 @@ void triangular(char *str, int len);
 void logarithmic(char *str);
 double mean(char *str);
 double variance(char *str);
+void maxlike(char* str, double a);
 //End function declaration
 
 
@@ -325,4 +326,104 @@ fclose(fp2);
 
 return ;
 
+}
+
+
+void bernoulli(char *str, int len){
+  int i,j;
+  double temp;
+  FILE *fp;
+
+  fp = fopen(str,"w");
+  //Generate numbers
+  for (i = 0; i < len; i++)
+  {
+    temp = 0;
+    if((double)rand()/RAND_MAX < 0.5) temp = -1;
+    else temp = 1;
+    fprintf(fp,"%lf\n",temp);
+  }
+
+  fclose(fp);
+
+  return;
+
+}
+
+
+
+void maxlike(char* str, double a){
+  int counter=0;
+  double i=0;
+  FILE *fp, *fp2, *fp3;
+  double temp=0.0, x;
+  fp = fopen("gau.dat","r");
+  fp2 = fopen(str, "w");
+  fp3 = fopen("ber.dat", "r");
+  while(fscanf(fp,"%lf",&x)!=EOF)
+  { 
+    fscanf(fp3,"%lf",&i);
+    temp = a*i+x;
+    fprintf(fp2,"%lf\n",temp);
+    counter++;
+  }
+
+  fclose(fp);
+  fclose(fp2);
+  fclose(fp3);
+
+return ;
+
+}
+
+double maxlike_proberr(int x){
+  FILE *fp, *fp2;
+  fp=fopen("maxlike.dat","r");
+  fp2 = fopen("ber.dat", "r");
+  long count1=0;
+  long count2=0;
+  double sum=0;
+  double y;
+  double i;
+  while(fscanf(fp,"%lf",&y)!=EOF)
+  { 
+    fscanf(fp2,"%lf",&i);
+    if(x == 1 && i == 1){
+      if(y<0) sum++;
+      count1++;
+    }
+    else if(x == -1 && i == -1){
+      if(y>0) sum++;
+      count2++;
+    }
+
+    else if(i == 1){
+      count1++;
+      continue;
+    }
+    else{
+      count2++;
+      continue;
+    }
+  }
+  fclose(fp);
+  fclose(fp2);
+  if(x == 1) return sum/count1;
+  else return sum/count2;
+}
+
+void proberr_graph(char* str){
+  FILE *fp, *fp2;
+  // fp = fopen("gau.dat","r");
+  fp2 = fopen(str, "w");
+  double a = 0.5; 
+  double temp;
+  for(int i=1;i<=10; i++){
+    maxlike("maxlike.dat",a*i);
+    temp = (maxlike_proberr(1)+maxlike_proberr(-1))/2;
+    fprintf(fp2,"%lf\n",temp);
+  }
+
+  fclose(fp2);
+  return;
 }

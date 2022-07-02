@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import scipy as sp
 import math
 import mpmath as mp
+import functions as fp
 
 #if using termux
 # import subprocess
@@ -26,52 +27,28 @@ for i in range(0,maxrange):
 	err_n = np.size(err_ind) #computing the probability
 	err.append(err_n/simlen) #storing the probability values in a list
 
-def unit_cdf(x):
-	if(x < 0):
-		return 0
-	elif(x > 1):
-		return 1
-	else:
-		return x
 
-def q_gau_cdf(x):
-	return(mp.erfc(x/math.sqrt(2))/2)
+vec_unit_cdf = np.vectorize(fp.unit_cdf, otypes=[np.float])
+vec_gau_cdf = np.vectorize(fp.gau_cdf, otypes=[np.float])
+vec_log_cdf = np.vectorize(fp.log_cdf, otypes=[np.float])
+vec_tri_cdf = np.vectorize(fp.tri_cdf, otypes=[np.float])
 
-def gau_cdf(x):
-	return(1-q_gau_cdf(x))
+a = []
 
-def log_cdf(x):
-    if(x < 0):
-        return 0
-    else:
-        return (1 - math.exp(-x/2))
-
-def tri_cdf(x):
-	if(x < 0):
-		return 0
-	elif(x > 0 and x < 1):
-		return (x**2)/2
-	elif(x > 1 and x < 2):
-		return 2*x - (x**2)/2 - 1
-	else:
-		return 1
+for i in range(1,11):
+	a.append(i*0.5)
 
 
-vec_unit_cdf = np.vectorize(unit_cdf, otypes=[np.float])
-vec_gau_cdf = np.vectorize(gau_cdf, otypes=[np.float])
-vec_log_cdf = np.vectorize(log_cdf, otypes=[np.float])
-vec_tri_cdf = np.vectorize(tri_cdf, otypes=[np.float])
-
-
+plt.plot(np.array(a), np.loadtxt('proberr_graph',dtype='double'))
 	
-plt.plot(x.T, err, 'o')#plotting the CDF
+# plt.plot(x.T, err, 'o')#plotting the CDF
 # plt.plot(xx,vec_unit_cdf(xx)) #plotting theoretical unit CDF
 # plt.plot(xx,vec_gau_cdf(xx)) #plotting theoretical gaussian CDF
 # plt.plot(xx,vec_log_cdf(xx)) #plotting theoretical logarithmic CDF
-plt.plot(xx, vec_tri_cdf(xx))
+# plt.plot(xx, vec_tri_cdf(xx))
 plt.grid() #creating the grid
-plt.xlabel('$x$')
-plt.ylabel('$F_X(x)$')
+plt.xlabel('$A$')
+plt.ylabel('$P_e$')
 plt.legend(["Numerical","Theory"])
 
 #if using termux
