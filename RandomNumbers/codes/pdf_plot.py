@@ -39,7 +39,7 @@ vec_gauss_pdf = scipy.vectorize(fp.gauss_pdf)
 vec_tri_pdf = np.vectorize(fp.tri_pdf, otypes=[np.float])
 
 
-# plt.plot(np.array(range(0,1000000)),randvar, 'o') #Plotting noise (Y)
+plt.plot(np.array(range(0,1000000)),randvar, 'o') #Plotting noise (Y)
 
 
 # plt.plot(x[0:(maxrange-1)].T,pdf, 'o')
