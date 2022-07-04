@@ -416,10 +416,10 @@ void proberr_graph(char* str){
   FILE *fp, *fp2;
   // fp = fopen("gau.dat","r");
   fp2 = fopen(str, "w");
-  double a = 0.5; 
+  double a = 0.1; 
   double temp;
   for(int i=1;i<=10; i++){
-    maxlike("maxlike.dat",a*i);
+    maxlike("maxlike.dat", a*i);
     temp = (maxlike_proberr(1)+maxlike_proberr(-1))/2;
     fprintf(fp2,"%lf\n",temp);
   }

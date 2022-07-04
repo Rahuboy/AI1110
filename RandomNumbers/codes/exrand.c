@@ -19,7 +19,7 @@ int  main(void) //main function begins
 	// triangular("tri.dat", 1000000);
 
 //Maximal Likelihood Random Numbers
- maxlike("maxlike.dat", 0.5);
+//  maxlike("maxlike.dat", 0.5);
 
 //Bernoulli random numbers
 // bernoulli("ber.dat", 1000000);
@@ -32,12 +32,12 @@ int  main(void) //main function begins
 
 
 //Calculating error probabilities
-printf("P_(e|0) = %lf\n",maxlike_proberr(1));
-printf("P_(e|1) = %lf\n",maxlike_proberr(-1));
+// printf("P_(e|0) = %lf\n",maxlike_proberr(1));
+// printf("P_(e|1) = %lf\n",maxlike_proberr(-1));
 // printf("P_e = %lf\n", (maxlike_proberr(1)+maxlike_proberr(-1))/2);
 
 //Array function for graph of error probabilities
-// proberr_graph("proberr_graph.dat");
+proberr_graph("proberr_graph.dat");
 
 
 return 0;

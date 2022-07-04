@@ -15,7 +15,7 @@ import functions as fp
 maxrange=30
 maxlim=4.0
 x = np.linspace(-maxlim,maxlim,maxrange)#points on the x axis
-xx = np.linspace(-maxlim,maxlim,maxrange*5) #more points
+xx = np.linspace(0,3,maxrange*5) #more points
 simlen = int(1e6) #number of samples
 err = [] #declaring probability list
 #randvar = np.random.normal(0,1,simlen)
@@ -37,13 +37,13 @@ vec_q_gau_cdf = np.vectorize(fp.q_gau_cdf, otypes=[np.float])
 a = []
 
 for i in range(1,11):
-	a.append(i*0.5)
+	a.append(i*0.1)
 
 
 
 
-# plt.plot(np.array(a), np.loadtxt('proberr_graph.dat',dtype='double'),'o') #plotting proberr graph
-# plt.plot(xx,vec_q_gau_cdf(xx))
+plt.plot(np.array(a), np.loadtxt('proberr_graph.dat',dtype='double'),'o') #plotting proberr graph
+plt.plot(xx,vec_q_gau_cdf(xx))
 	
 
 
