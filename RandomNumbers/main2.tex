@@ -987,8 +987,39 @@ V = X_1^2 + X_2^2
 %
 %
 %
+\\
+\solution Use the function "chi" in \texbf{exrand.c} and execute:
+
+\begin{lstlisting}
+    gcc exrand.c
+    ./a.out
+\end{lstlisting}
+
+Define the functions "chi\_pdf" and "chi\_cdf" in \textbf{functions.py} and execute:
+
+\begin{lstlisting}
+    python3 cdf_plot.py
+    python3 pdf_plot.py
+\end{lstlisting}
 
 
+\begin{figure}
+    \centering
+    \includegraphics[width=\columnwidth]{./figures/CDF_chi.png}
+    \caption{The CDF of $V$}
+    \label{fig:chi_cdf}
+    \end{figure}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=\columnwidth]{./figures/PDF_chi.png}
+        \caption{The PDF of $V$}
+        \label{fig:chi_pdf}
+        \end{figure}
+
+The graphs are plotted in Fig. \ref{fig:chi_cdf}
+
+\label{eq:qn_Fv}
 \item
 If
 %
@@ -1039,6 +1070,38 @@ Therefore,
     & = r e^{-\frac{r^2}{2}}                                                                       \\
 \end{align}
 
+We then have:
+\begin{align}
+    F_R(r) &= \pr{R \leq r} \\
+    &= \int _{0} ^r f_R(r) dr
+    &= 1 - e^{-\frac{r^2}{2}}
+\end{align}
+
+$F_V(x)$ is given by:
+
+\begin{align}
+    F_V(x) &= F_{X_1^2+X_2^2}(x) \\
+    &= F_{R^2}{x} \\
+    &= \pr{R^2 \leq x} \\
+    &= \pr{R \leq \sqrt{x}} 
+\end{align}
+
+Therefore, 
+
+
+\begin{align}
+    F_V(x) = 
+    \begin{cases}
+        0, & x \in x < 0 \\
+        1 - e^{-\frac{x}{2}}, & x \geq  0\\
+    \end{cases}
+\end{align}
+
+Comparing with Eq. \ref{eq:qn_Fv} we get:
+
+\begin{align}
+    \alpha = \frac{1}{2}
+\end{align}
 
 
 \item
@@ -1049,7 +1112,59 @@ Plot the CDF and PDF of
 A = \sqrt{V}
 \end{equation}
 %
+\\
+\solution
+Use the function "ray" in \textbf{exrand.c} and execute:
+\begin{lstlisting}
+    gcc exrand.c
+    ./a.out
+\end{lstlisting}
+
+Add the functions "ray\_pdf" and "ray\_cdf" to \textbf{functions.py} and execute 
+the below files:
+\begin{lstlisting}
+    python3 pdf_plot.py
+    python3 cdf_plot.py
+\end{lstlisting}
+
+The graphs are plotted in Fig. \ref{fig:ray_cdf}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\columnwidth]{./figures/CDF_ray.png}
+    \caption{The CDF of $A$}
+    \label{fig:ray_cdf}
+    \end{figure}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=\columnwidth]{./figures/PDF_ray.png}
+        \caption{The PDF of $A$}
+        \label{fig:ray_pdf}
+        \end{figure}
+
+
+       
+
+
 \end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Conditional Probability}
 \begin{enumerate}[label=\thesection.\arabic*
 ,ref=\thesection.\theenumi]
