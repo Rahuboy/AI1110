@@ -46,3 +46,26 @@ def tri_pdf(x):
 	else:
 		return 0
 
+def chi_pdf(x):
+	if(x < 0):
+		return 0
+	else:
+		return 1/2*math.exp(-x/2)
+	
+def chi_cdf(x):
+	if(x < 0):
+		return 0
+	else:
+		return 1-math.exp(-x/2)
+
+def ray_cdf(x):
+	if(x < 0):
+		return 0
+	else:
+		return 1-math.exp(-(x**2)/2)
+	
+def ray_pdf(x):
+	if(x < 0):
+		return 0
+	else: 
+		return x*math.exp(-(x**2)/2)

@@ -21,7 +21,7 @@ pdf = [] #declaring pdf list
 h = 2*maxlim/(maxrange-1);
 #randvar = np.random.normal(0,1,simlen)
 #randvar = np.loadtxt('uni.dat',dtype='double')
-randvar = np.loadtxt('maxlike.dat',dtype='double')
+randvar = np.loadtxt('ray.dat',dtype='double')
 
 for i in range(0,maxrange):
 	err_ind = np.nonzero(randvar < x[i]) #checking probability condition
@@ -37,17 +37,19 @@ for i in range(0,maxrange-1):
 	
 vec_gauss_pdf = scipy.vectorize(fp.gauss_pdf)
 vec_tri_pdf = np.vectorize(fp.tri_pdf, otypes=[np.float])
+vec_chi_pdf = np.vectorize(fp.chi_pdf, otypes=[np.float])
+vec_ray_pdf = np.vectorize(fp.ray_pdf, otypes=[np.float])
 
 
-plt.plot(np.array(range(0,1000000)),randvar, 'o') #Plotting noise (Y)
+# plt.plot(np.array(range(0,1000000)),randvar, 'o') #Plotting noise (Y)
 
 
-# plt.plot(x[0:(maxrange-1)].T,pdf, 'o')
-# plt.plot(xx, vec_tri_pdf(xx))
+plt.plot(x[0:(maxrange-1)].T,pdf, 'o')
+plt.plot(xx, vec_ray_pdf(xx))
 plt.grid() #creating the grid
 plt.xlabel('$x$')
-plt.ylabel('$Y$')
-# plt.legend(["Numerical","Theory"])
+plt.ylabel('$f_V(x)$')
+plt.legend(["Numerical","Theory"])
 
 #if using termux
 # plt.savefig('../figs/uni_pdf.pdf')

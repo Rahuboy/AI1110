@@ -15,13 +15,13 @@ import functions as fp
 maxrange=30
 maxlim=4.0
 x = np.linspace(-maxlim,maxlim,maxrange)#points on the x axis
-xx = np.linspace(0,3,maxrange*5) #more points
+xx = np.linspace(-maxlim,maxlim,maxrange*5) #more points
 simlen = int(1e6) #number of samples
 err = [] #declaring probability list
 #randvar = np.random.normal(0,1,simlen)
 # randvar = np.loadtxt('uni.dat',dtype='double')
 # randvar = np.loadtxt('gau.dat',dtype='double')
-randvar = np.loadtxt('tri.dat',dtype='double')
+randvar = np.loadtxt('ray.dat',dtype='double')
 for i in range(0,maxrange):
 	err_ind = np.nonzero(randvar < x[i]) #checking probability condition
 	err_n = np.size(err_ind) #computing the probability
@@ -33,6 +33,8 @@ vec_gau_cdf = np.vectorize(fp.gau_cdf, otypes=[np.float])
 vec_log_cdf = np.vectorize(fp.log_cdf, otypes=[np.float])
 vec_tri_cdf = np.vectorize(fp.tri_cdf, otypes=[np.float])
 vec_q_gau_cdf = np.vectorize(fp.q_gau_cdf, otypes=[np.float])
+vec_chi_cdf = np.vectorize(fp.chi_cdf, otypes=[np.float])
+vec_ray_cdf = np.vectorize(fp.ray_cdf, otypes=[np.float])
 
 a = []
 
@@ -42,18 +44,20 @@ for i in range(1,11):
 
 
 
-plt.plot(np.array(a), np.loadtxt('proberr_graph.dat',dtype='double'),'o') #plotting proberr graph
-plt.plot(xx,vec_q_gau_cdf(xx))
+# plt.plot(np.array(a), np.loadtxt('proberr_graph.dat',dtype='double'),'o') #plotting proberr graph
+# plt.plot(xx,vec_q_gau_cdf(xx))
 	
 
 
 
 
-# plt.plot(x.T, err, 'o')#plotting the CDF
+plt.plot(x.T, err, 'o')#plotting the CDF
 # plt.plot(xx,vec_unit_cdf(xx)) #plotting theoretical unit CDF
 # plt.plot(xx,vec_gau_cdf(xx)) #plotting theoretical gaussian CDF
 # plt.plot(xx,vec_log_cdf(xx)) #plotting theoretical logarithmic CDF
 # plt.plot(xx, vec_tri_cdf(xx))
+# plt.plot(xx, vec_chi_cdf(xx))
+plt.plot(xx, vec_ray_cdf(xx))
 plt.grid() #creating the grid
 plt.xlabel('$A$')
 plt.ylabel('$P_e$')

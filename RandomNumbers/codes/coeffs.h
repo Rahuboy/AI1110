@@ -11,6 +11,8 @@ double **transpose(double **a,  int m, int n);
 void uniform(char *str, int len);
 void gaussian(char *str, int len);
 void triangular(char *str, int len);
+void chi(char *str, int len);
+void ray(char *str, int len);
 void logarithmic(char *str);
 double mean(char *str);
 double variance(char *str);
@@ -306,7 +308,7 @@ fclose(fp);
 
 
 
-//Function for Rayleigh Distribution
+//Function for Rayleigh Distribution 1
 void logarithmic(char *str){
   int i=0,c;
 FILE *fp, *fp2;
@@ -350,6 +352,56 @@ void bernoulli(char *str, int len){
 
 }
 
+
+void chi(char *str, int len)
+{
+    FILE *fp = fopen(str, "w");
+    int i,j;
+    double v;
+    double x, y;
+
+    for (i = 0; i < len; i++)
+    {
+        x=0;
+        for (j = 0; j < 12; j++){
+          x += (double)rand() / RAND_MAX;
+        }
+        x-=6;
+        y=0;
+        for (j = 0; j < 12; j++){
+          y += (double)rand() / RAND_MAX;
+        }
+        y-=6;
+        v = x*x + y*y;
+        fprintf(fp, "%lf\n", v);
+    }
+    fclose(fp);
+}
+
+void ray(char *str, int len)
+{
+    FILE *fp = fopen(str, "w");
+    int i,j;
+    double v;
+    double x, y;
+
+    for (i = 0; i < len; i++)
+    {
+        x=0;
+        for (j = 0; j < 12; j++){
+          x += (double)rand() / RAND_MAX;
+        }
+        x-=6;
+        y=0;
+        for (j = 0; j < 12; j++){
+          y += (double)rand() / RAND_MAX;
+        }
+        y-=6;
+        v = x*x + y*y;
+        fprintf(fp, "%lf\n", sqrt(v));
+    }
+    fclose(fp);
+}
 
 
 void maxlike(char* str, double a){
