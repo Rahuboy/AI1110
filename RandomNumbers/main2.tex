@@ -852,6 +852,16 @@ The theoretical CDF is plotted in Fig. \ref{fig:tri_cdf_sim}
     ,ref=\thesection.\theenumi]
 
 
+    \item Generate equiprobable $X \in \cbrak{1,-1}$.
+    \\
+    \solution
+    Use the function "bernoulli" in \textbf{exrand.c} and execute the code below:
+    \begin{lstlisting}
+        gcc exrand.c
+        ./a.out
+    \end{lstlisting}
+
+
 
 \item Generate 
     \begin{equation}
@@ -938,7 +948,7 @@ We have:
     &= \int_{A} ^{\infty} \frac{1}{\sqrt{2\pi}} e^{\frac{-x^2}{2}} dx \\
     &= Q_N(A)
 \end{align}
-where $Q_N$ is the $Q-$function of the normal distribution.
+where $Q\_N$ is the $Q-$function of the normal distribution.
 
 Similarly, 
 \begin{align}
@@ -989,7 +999,7 @@ P_{e|0} &= \pr{\hat{X} = -1 | X = 1} \\
 &= \int _{-\infty} ^{\delta - A} \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} dx \\
 &= \int _{A - \delta} ^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} dx \\
 &= Q_N(A - \delta) \\
-\intertext{Where $Q_N$ is the $Q$-function of the normal distribution. Similarly,}
+\intertext{Where $Q\_N$ is the $Q$-function of the normal distribution. Similarly,}
 P_{e|1} &= Q_N(A+\delta) \\
 \intertext{Therefore,}
 \label{eq:Pe_equation}
