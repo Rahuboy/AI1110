@@ -17,6 +17,7 @@ void logarithmic(char *str);
 double mean(char *str);
 double variance(char *str);
 void maxlike(char* str, double a);
+double mygauss(double var);
 //End function declaration
 
 
@@ -362,16 +363,8 @@ void chi(char *str, int len)
 
     for (i = 0; i < len; i++)
     {
-        x=0;
-        for (j = 0; j < 12; j++){
-          x += (double)rand() / RAND_MAX;
-        }
-        x-=6;
-        y=0;
-        for (j = 0; j < 12; j++){
-          y += (double)rand() / RAND_MAX;
-        }
-        y-=6;
+        x = mygauss(1);
+        y = mygauss(1);
         v = x*x + y*y;
         fprintf(fp, "%lf\n", v);
     }
@@ -387,16 +380,8 @@ void ray(char *str, int len)
 
     for (i = 0; i < len; i++)
     {
-        x=0;
-        for (j = 0; j < 12; j++){
-          x += (double)rand() / RAND_MAX;
-        }
-        x-=6;
-        y=0;
-        for (j = 0; j < 12; j++){
-          y += (double)rand() / RAND_MAX;
-        }
-        y-=6;
+        x = mygauss(1);
+        y = mygauss(1);
         v = x*x + y*y;
         fprintf(fp, "%lf\n", sqrt(v));
     }
@@ -463,6 +448,21 @@ double maxlike_proberr(int x){
   if(x == 1) return sum/count1;
   else return sum/count2;
 }
+
+
+
+double mygauss(double var){
+    double x=0;
+        for (int j = 0; j < 12; j++){
+          x += (double)rand() / RAND_MAX;
+        }
+        x-=6;
+        return x*sqrt(var);
+}
+
+
+
+
 
 void proberr_graph(char* str){
   FILE *fp, *fp2;

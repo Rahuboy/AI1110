@@ -21,7 +21,7 @@ pdf = [] #declaring pdf list
 h = 2*maxlim/(maxrange-1);
 #randvar = np.random.normal(0,1,simlen)
 #randvar = np.loadtxt('uni.dat',dtype='double')
-randvar = np.loadtxt('proberr_graph.dat',dtype='double')
+randvar = np.loadtxt('chi.dat',dtype='double')
 
 for i in range(0,maxrange):
 	err_ind = np.nonzero(randvar < x[i]) #checking probability condition
@@ -49,7 +49,7 @@ vec_ray_pdf = np.vectorize(fp.ray_pdf, otypes=[np.float])
 
 
 plt.plot(x[0:(maxrange-1)].T,pdf, 'o')
-plt.plot(xx, vec_ray_pdf(xx))
+plt.plot(xx, vec_chi_pdf(xx))
 plt.grid() #creating the grid
 plt.xlabel('$x$')
 plt.ylabel('$f_V(x)$')

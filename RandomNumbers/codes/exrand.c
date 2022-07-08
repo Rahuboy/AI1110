@@ -25,10 +25,10 @@ int  main(void) //main function begins
 // bernoulli("ber.dat", 1000000);
 
 //Chi-Square random numbers
-// chi("chi.dat", 1000000);
+chi("chi.dat", 1000000);
 
 //Rayleigh random numbers
-ray("ray.dat", 1000000);
+// ray("ray.dat", 1000000);
 
 
 //Mean of uniform
