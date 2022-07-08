@@ -948,7 +948,7 @@ We have:
     &= \int_{A} ^{\infty} \frac{1}{\sqrt{2\pi}} e^{\frac{-x^2}{2}} dx \\
     &= Q_N(A)
 \end{align}
-where $Q\_N$ is the $Q-$function of the normal distribution.
+where $Q_N$ is the $Q-$function of the normal distribution.
 
 Similarly, 
 \begin{align}
@@ -1007,7 +1007,7 @@ P_e &= P_{e|0} \pr{X = 1} + P_{e|1} \pr{X = -1} \\
 &= \frac{1}{2}(Q_N(A - \delta) + Q_N(A + \delta)) \\
 \end{align}
 
-To minimise $P\_e$, we differentiate the above equation wrt $\delta$:
+To minimise $P_e$, we differentiate the above equation wrt $\delta$:
 
 \begin{align}
 0 &= \frac{d}{d\delta} \left(\frac{1}{2}(Q_N(A - \delta) + Q_N(A + \delta))\right) \\
@@ -1186,21 +1186,21 @@ Let
 
 Then, 
 \begin{align}
-    f_{X_1,X_2}(x_1,x_2) &= f_{X_1}(x_1)f_{X_2}(x_2) \\
+    p_{X_1,X_2}(x_1,x_2) &= p_{X_1}(x_1)p_{X_2}(x_2) \\
     &= \frac{1}{2\pi} e^{\frac{-(x_1^2+x_2^2)}{2}} \\
     &= \frac{1}{2\pi} e^{\frac{-r^2}{2}}
 \end{align}
 
 Now, since 
 \begin{align}
-    f_{r, \theta}(r, \theta) &= |J|f_{X_1, X_2}(x_1, x_2)      \\   
+    p_{r, \theta}(r, \theta) &= |J|p_{X_1, X_2}(x_1, x_2)      \\   
 \intertext{we have:}     
-f_{R, \theta}(r, \theta) & = \frac{r}{2\pi} e^{-\frac{r^2}{2}}                                                    
+p_{R, \theta}(r, \theta) & = \frac{r}{2\pi} e^{-\frac{r^2}{2}}                                                    
 \end{align}
 
 Therefore, 
 \begin{align}
-    f_R(r)                   & = \int_0^{2\pi} f_{R, \theta}(r, \theta)                                                     \\
+    p_R(r)                   & = \int_0^{2\pi} p_{R, \theta}(r, \theta)                                                     \\
     & = \int_0^{2\pi} \frac{r}{2\pi} e^{-\frac{r^2}{2}} d\theta                                    \\
     & = r e^{-\frac{r^2}{2}}                                                                       \\
 \end{align}

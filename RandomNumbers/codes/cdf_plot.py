@@ -15,7 +15,7 @@ import functions as fp
 maxrange=30
 maxlim=4.0
 x = np.linspace(-maxlim,maxlim,maxrange)#points on the x axis
-xx = np.linspace(-maxlim,maxlim,maxrange*5) #more points
+xx = np.linspace(0,maxlim,maxrange*5) #more points
 simlen = int(1e6) #number of samples
 err = [] #declaring probability list
 #randvar = np.random.normal(0,1,simlen)
@@ -44,20 +44,20 @@ for i in range(1,11):
 
 
 
-# plt.plot(np.array(a), np.loadtxt('proberr_graph.dat',dtype='double'),'o') #plotting proberr graph
-# plt.plot(xx,vec_q_gau_cdf(xx))
+plt.semilogy(np.array(a), np.loadtxt('proberr_graph.dat',dtype='double'),'o') #plotting proberr graph
+plt.semilogy(xx,vec_q_gau_cdf(xx))
 	
 
 
 
 
-plt.plot(x.T, err, 'o')#plotting the CDF
+# plt.plot(x.T, err, 'o')#plotting the CDF
 # plt.plot(xx,vec_unit_cdf(xx)) #plotting theoretical unit CDF
 # plt.plot(xx,vec_gau_cdf(xx)) #plotting theoretical gaussian CDF
 # plt.plot(xx,vec_log_cdf(xx)) #plotting theoretical logarithmic CDF
 # plt.plot(xx, vec_tri_cdf(xx))
 # plt.plot(xx, vec_chi_cdf(xx))
-plt.plot(xx, vec_ray_cdf(xx))
+# plt.plot(xx, vec_ray_cdf(xx))
 plt.grid() #creating the grid
 plt.xlabel('$A$')
 plt.ylabel('$P_e$')
