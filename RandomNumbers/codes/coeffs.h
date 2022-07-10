@@ -415,7 +415,7 @@ return ;
 
 double maxlike_proberr(int x){
   FILE *fp, *fp2;
-  fp=fopen("maxlike.dat","r");
+  fp=fopen("cond_prob.dat","r");
   fp2 = fopen("ber.dat", "r");
   long count1=0;
   long count2=0;
@@ -461,21 +461,39 @@ double mygauss(double var){
 }
 
 
-
-
+void cond_prob(char *str,  double gamma){
+  FILE *fp, *fp2;
+  fp = fopen(str, "w");
+  fp2 = fopen("ber.dat", "r");
+  double ber = 0;
+  while(fscanf(fp2,"%lf",&ber)!=EOF){
+    double v = gamma/2;
+    double a = mygauss(v);
+    double b = mygauss(v);
+  
+    double y = ber*sqrt(a*a + b*b) + mygauss(1);
+    fprintf(fp, "%lf\n", y);
+  }
+  fclose(fp);
+  return;
+}
 
 void proberr_graph(char* str){
   FILE *fp, *fp2;
   // fp = fopen("gau.dat","r");
   fp2 = fopen(str, "w");
-  double a = 0.1; 
+  double a = 1; 
   double temp;
   for(int i=1;i<=10; i++){
-    maxlike("maxlike.dat", a*i);
-    temp = (maxlike_proberr(1)+maxlike_proberr(-1))/2;
+    // maxlike("maxlike.dat", a*i);
+    cond_prob("cond_prob.dat", a*i);
+    // temp = (maxlike_proberr(1)+maxlike_proberr(-1))/2;
+    temp = maxlike_proberr(1);
     fprintf(fp2,"%lf\n",temp);
   }
 
   fclose(fp2);
   return;
 }
+
+

@@ -25,7 +25,7 @@ int  main(void) //main function begins
 // bernoulli("ber.dat", 1000000);
 
 //Chi-Square random numbers
-chi("chi.dat", 1000000);
+// chi("chi.dat", 1000000);
 
 //Rayleigh random numbers
 // ray("ray.dat", 1000000);
@@ -42,7 +42,7 @@ chi("chi.dat", 1000000);
 // printf("P_e = %lf\n", (maxlike_proberr(1)+maxlike_proberr(-1))/2);
 
 //Array function for graph of error probabilities
-// proberr_graph("proberr_graph.dat");
+proberr_graph("proberr_graph.dat");
 
 
 return 0;

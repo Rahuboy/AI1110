@@ -69,3 +69,7 @@ def ray_pdf(x):
 		return 0
 	else: 
 		return x*math.exp(-(x**2)/2)
+
+
+def proberr2(x):
+	return 1/2*(1-math.sqrt(x/(x+2)))
