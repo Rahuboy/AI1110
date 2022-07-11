@@ -11,8 +11,8 @@ double **transpose(double **a,  int m, int n);
 void uniform(char *str, int len);
 void gaussian(char *str, int len);
 void triangular(char *str, int len);
-void chi(char *str, int len);
-void ray(char *str, int len);
+void chi(char *str, int len,int dof, int var);
+void ray(char *str, int len,int dof, int var);
 void logarithmic(char *str);
 double mean(char *str);
 double variance(char *str);
@@ -353,31 +353,36 @@ void bernoulli(char *str, int len){
 
 }
 
-
-void chi(char *str, int len)
+//Generalised chi function
+void chi(char *str, int len,int dof, int var)
 {
     FILE *fp = fopen(str, "w");
     int i,j;
     double v;
     double x, y;
+    double arr[dof];
 
     for (i = 0; i < len; i++)
     {
-        x = mygauss(1);
-        y = mygauss(1);
-        v = x*x + y*y;
+        v=0;
+        for(int j = 0; j < dof; j++){
+          x = mygauss(var);
+          arr[j] = x*x;
+          v+=arr[j];
+        }
         fprintf(fp, "%lf\n", v);
     }
     fclose(fp);
 }
 
+//Generalised ray function
 void ray(char *str, int len, int dof, int var)
 {
     FILE *fp = fopen(str, "w");
     int i,j;
     double v;
     double x, y;
-    double arr[dof]
+    double arr[dof];
 
     for (i = 0; i < len; i++)
     {

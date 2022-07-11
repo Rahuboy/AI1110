@@ -28,7 +28,7 @@ int  main(void) //main function begins
 // chi("chi.dat", 1000000);
 
 //Rayleigh random numbers
-// ray("ray.dat", 1000000);
+ray("ray.dat", 1000000, 2, 1);
 
 
 //Mean of uniform
@@ -42,7 +42,7 @@ int  main(void) //main function begins
 // printf("P_e = %lf\n", (maxlike_proberr(1)+maxlike_proberr(-1))/2);
 
 //Array function for graph of error probabilities
-proberr_graph("proberr_graph.dat");
+// proberr_graph("proberr_graph.dat");
 
 
 return 0;
