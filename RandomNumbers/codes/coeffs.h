@@ -371,19 +371,24 @@ void chi(char *str, int len)
     fclose(fp);
 }
 
-void ray(char *str, int len)
+void ray(char *str, int len, int dof, int var)
 {
     FILE *fp = fopen(str, "w");
     int i,j;
     double v;
     double x, y;
+    double arr[dof]
 
     for (i = 0; i < len; i++)
     {
-        x = mygauss(1);
-        y = mygauss(1);
-        v = x*x + y*y;
+        v=0;
+        for(int j = 0; j < dof; j++){
+          x = mygauss(var);
+          arr[j] = x*x;
+          v+=arr[j];
+        }
         fprintf(fp, "%lf\n", sqrt(v));
+
     }
     fclose(fp);
 }

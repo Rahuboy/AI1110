@@ -16,8 +16,8 @@ for i in range(1,11):
 
 vec_proberr2 = np.vectorize(fp.proberr2, otypes=[np.float])
 
-plt.plot(np.array(a), np.loadtxt('proberr_graph.dat',dtype='double')) #plotting proberr graph
-# plt.plot(xx,vec_proberr2(xx))
+plt.semilogy(np.array(a), np.loadtxt('proberr_graph.dat',dtype='double'),'o') #plotting proberr graph
+plt.semilogy(xx,vec_proberr2(xx))
 
 plt.grid() #creating the grid
 plt.xlabel('$\gamma$')
